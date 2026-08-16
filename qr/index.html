@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stephen Asma - QR Code</title>
+    <meta name="description" content="Stephen Asma - Scan QR code to visit website">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 700px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .image-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        
+        .qr-container {
+            width: 100%;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            aspect-ratio: 1;
+        }
+        
+        .qr-image {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            display: block;
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+        
+        /* Author name styling - positioned outside container */
+        .author-name {
+            position: fixed;
+            z-index: 5;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-weight: bold;
+            color: #1a202c;
+            text-align: center;
+            pointer-events: auto;
+            cursor: pointer;
+        }
+        
+        .author-name a {
+            text-decoration: none;
+            color: #1a202c;
+            display: block;
+        }
+        
+        /* Desktop: Right side middle */
+        .author-name.desktop {
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-size: 2.8rem;
+            line-height: 1;
+            letter-spacing: 2px;
+        }
+        
+        /* Mobile: Bottom center */
+        .author-name.mobile {
+            display: none;
+            bottom: 8%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.2rem;
+            text-align: center;
+            width: 100%;
+            padding: 0 15px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            /* Show mobile author name, hide desktop */
+            .author-name.desktop {
+                display: none;
+            }
+            
+            .author-name.mobile {
+                display: block;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .author-name.mobile {
+                font-size: 1.8rem;
+            }
+            
+            .qr-container {
+                padding: 30px 15px;
+            }
+        }
+        
+        /* For very small screens */
+        @media (max-width: 350px) {
+            .author-name.mobile {
+                font-size: 1.5rem;
+                bottom: 8%;
+            }
+            
+            .qr-container {
+                padding: 20px 10px;
+            }
+        }
+        
+        /* Desktop only adjustments */
+        @media (min-width: 769px) {
+            .author-name.desktop {
+                display: block;
+            }
+            
+            .author-name.mobile {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-wrapper">
+            <div class="qr-container">
+                <img
+                    class="qr-image"
+                    src="https://api.qrserver.com/v1/create-qr-code/?size=900x900&data=https%3A%2F%2Fstephenasma.com"
+                    alt="QR code"
+                />
+            </div>
+        </div>
+    </div>
+    
+    <!-- Author Name - Desktop -->
+    <div class="author-name desktop"><a href="/">Stephen Asma</a></div>
+    
+    <!-- Author Name - Mobile -->
+    <div class="author-name mobile"><a href="/">Stephen Asma</a></div>
+</body>
+</html>
