@@ -3,159 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>stephenasma.com – QR Code</title>
-    <meta name="description" content="Scan this QR code to visit stephenasma.com">
-    <meta name="robots" content="noindex, nofollow">
-
+    <title>Stephen Asma - QR Code</title>
+    <meta name="description" content="Stephen Asma - Scan QR code to visit website">
+    
     <style>
-        *,
-        *::before,
-        *::after {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: #ffffff;
-            color: #000000;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: white;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
-            line-height: 1.4;
+            position: relative;
         }
-
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
+        
+        .container {
+            width: 100%;
+            max-width: 700px;
             overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
+            position: relative;
         }
-
-        .qr-page {
+        
+        .image-wrapper {
+            position: relative;
             width: 100%;
-            max-width: 640px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 24px;
         }
-
-        .qr-link {
-            display: block;
-            width: 100%;
-            max-width: 480px;
-            margin: 0 auto;
-            text-decoration: none;
-            background: #ffffff;
-            border-radius: 16px;
-            padding: 16px;
-            transition: transform 0.15s ease, box-shadow 0.15s ease;
-        }
-
-        .qr-link:hover,
-        .qr-link:focus-visible {
-            transform: scale(1.01);
-            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.15);
-        }
-
-        .qr-image {
-            display: block;
+        
+        .qr-container {
             width: 100%;
             height: auto;
-            aspect-ratio: 1 / 1;
-            object-fit: contain;
-            background: #ffffff;
-            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            aspect-ratio: 1;
         }
-
-        .qr-image.is-error {
-            display: none;
-        }
-
-        .qr-fallback {
-            display: none;
-            padding: 20px;
-            background: #f5f5f5;
-            border-radius: 8px;
-            color: #000000;
-        }
-
-        .qr-image.is-error + .qr-fallback {
+        
+        .qr-image {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
             display: block;
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            box-sizing: border-box;
         }
-
-        .url-display {
+        
+        /* Author name styling - positioned outside container */
+        .author-name {
+            position: fixed;
+            z-index: 5;
             font-family: Georgia, 'Times New Roman', Times, serif;
             font-weight: bold;
-            font-size: clamp(1.5rem, 4vw, 2.2rem);
-            color: #000000;
+            color: #1a202c;
+            text-align: center;
+            pointer-events: auto;
+            cursor: pointer;
+        }
+        
+        .author-name a {
             text-decoration: none;
-            letter-spacing: 1px;
-            word-break: break-all;
+            color: #1a202c;
+            display: block;
         }
-
-        .url-display:hover,
-        .url-display:focus-visible {
-            text-decoration: underline;
-            text-underline-offset: 4px;
+        
+        /* Desktop: Right side middle */
+        .author-name.desktop {
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-size: 2.8rem;
+            line-height: 1;
+            letter-spacing: 2px;
         }
-
+        
+        /* Mobile: Bottom center */
+        .author-name.mobile {
+            display: none;
+            bottom: 8%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.2rem;
+            text-align: center;
+            width: 100%;
+            padding: 0 15px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            /* Show mobile author name, hide desktop */
+            .author-name.desktop {
+                display: none;
+            }
+            
+            .author-name.mobile {
+                display: block;
+            }
+        }
+        
         @media (max-width: 480px) {
-            .qr-page {
-                gap: 16px;
+            .author-name.mobile {
+                font-size: 1.8rem;
             }
-
-            .qr-link {
-                padding: 12px;
-                border-radius: 12px;
+            
+            .qr-container {
+                padding: 30px 15px;
             }
-
-            .url-display {
-                font-size: 1.6rem;
+        }
+        
+        /* For very small screens */
+        @media (max-width: 350px) {
+            .author-name.mobile {
+                font-size: 1.5rem;
+                bottom: 8%;
+            }
+            
+            .qr-container {
+                padding: 20px 10px;
+            }
+        }
+        
+        /* Desktop only adjustments */
+        @media (min-width: 769px) {
+            .author-name.desktop {
+                display: block;
+            }
+            
+            .author-name.mobile {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
-    <main class="qr-page" aria-labelledby="page-title">
-        <h1 id="page-title" class="sr-only">QR code for stephenasma.com</h1>
-
-        <a
-            class="qr-link"
-            href="https://stephenasma.com"
-            aria-label="Scan QR code or click to visit stephenasma.com"
-        >
-            <img
-                class="qr-image"
-                src="https://api.qrserver.com/v1/create-qr-code/?size=1000x1000&data=https%3A%2F%2Fstephenasma.com"
-                alt="QR code linking to stephenasma.com"
-                loading="eager"
-                onerror="this.classList.add('is-error')"
-            />
-            <div class="qr-fallback" role="alert">
-                <p>QR code could not be loaded.</p>
-                <p>Please visit <a href="https://stephenasma.com">stephenasma.com</a> directly.</p>
+    <div class="container">
+        <div class="image-wrapper">
+            <div class="qr-container">
+                <img
+                    class="qr-image"
+                    src="https://api.qrserver.com/v1/create-qr-code/?size=900x900&data=https%3A%2F%2Fstephenasma.com"
+                    alt="QR code"
+                />
             </div>
-        </a>
-
-        <a class="url-display" href="https://stephenasma.com">stephenasma.com</a>
-    </main>
-
-    <script>
-        // Remove error state if the image loads successfully (e.g., after a retry)
-        document.querySelector('.qr-image').addEventListener('load', function () {
-            this.classList.remove('is-error');
-        });
-    </script>
+        </div>
+    </div>
+    
+    <!-- Author Name - Desktop -->
+    <div class="author-name desktop"><a href="/">Stephen Asma</a></div>
+    
+    <!-- Author Name - Mobile -->
+    <div class="author-name mobile"><a href="/">Stephen Asma</a></div>
 </body>
 </html>
